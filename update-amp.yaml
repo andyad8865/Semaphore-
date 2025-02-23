@@ -3,16 +3,16 @@
   tasks:
     # 1. Update apt cache
     - name: Update apt cache
+      become: true
       apt:
-        become: true
         update_cache: yes
         lock_timeout: 120
 
     # 2. Upgrade ampinstmgr
     - name: Upgrade ampinstmgr to the latest version
+      become: true
       apt:
         name: ampinstmgr
-        become: true
         state: latest
         lock_timeout: 120
 
