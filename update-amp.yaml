@@ -1,0 +1,15 @@
+- hosts: all  # Replace with the correct group of AMP agent hosts
+  become: true
+  tasks:
+    # 1. Update apt cache
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        lock_timeout: 120
+
+    # 2. Upgrade wazuh-agent
+    - name: Upgrade wazuh-agent to the latest version
+      apt:
+        name: ampinstmgr
+        state: latest
+        lock_timeout: 120
