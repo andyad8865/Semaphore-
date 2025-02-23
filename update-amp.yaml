@@ -4,12 +4,23 @@
     # 1. Update apt cache
     - name: Update apt cache
       apt:
+        become: true
         update_cache: yes
         lock_timeout: 120
 
     # 2. Upgrade ampinstmgr
-    - name: Upgrade wazuh-agent to the latest version
+    - name: Upgrade ampinstmgr to the latest version
       apt:
         name: ampinstmgr
+        become: true
         state: latest
         lock_timeout: 120
+
+    
+    # 2. Upgrade amp instances
+    - name: Upgrade AMP Instances to the latest version
+      command: ampinstmgr upgradeall --nocache
+      become: true
+      become_method: su
+      become_user: amp
+      become_flags: '-l'
