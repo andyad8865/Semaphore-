@@ -1,9 +1,8 @@
 - hosts: all  # Replace with the correct group of AMP agent hosts
-  vars_files:
-    - sudo.yml
+
   vars:
     ansible_become_password: "{{ ansible_password }}"  # Use SSH password for sudo
-    
+
   tasks:
     # 1. Update apt cache
     - name: Update apt cache
