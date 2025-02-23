@@ -1,16 +1,20 @@
 - hosts: all  # Replace with the correct group of AMP agent hosts
-  become_method: sudo
-  become: true
-  become_password: sudo
+  vars_files:
+    - sudo.yml
+  vars:
+    ansible_become_password: "{{ ansible_password }}"  # Use SSH password for sudo
+    
   tasks:
     # 1. Update apt cache
     - name: Update apt cache
+      become: yes
       apt:
         update_cache: yes
         lock_timeout: 120
 
     # 2. Upgrade ampinstmgr
     - name: Upgrade ampinstmgr to the latest version
+      become: yes   
       apt:
         name: ampinstmgr
         state: latest
@@ -20,6 +24,5 @@
     # 2. Upgrade amp instances
     - name: Upgrade AMP Instances to the latest version
       command: ampinstmgr upgradeall --nocache
-      become_method: su
       become_user: amp
-      become_flags: '-l'
+  
