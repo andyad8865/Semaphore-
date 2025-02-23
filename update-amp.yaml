@@ -7,7 +7,7 @@
         update_cache: yes
         lock_timeout: 120
 
-    # 2. Upgrade wazuh-agent
+    # 2. Upgrade ampinstmgr
     - name: Upgrade wazuh-agent to the latest version
       apt:
         name: ampinstmgr
