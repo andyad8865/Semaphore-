@@ -1,5 +1,6 @@
 - hosts: all  # Replace with the correct group of AMP agent hosts
-
+  ars_files:
+    - sudo.yml
   vars:
     ansible_become_password: "{{ ansible_password }}"  # Use SSH password for sudo
 
