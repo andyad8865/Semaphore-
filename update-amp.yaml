@@ -1,6 +1,7 @@
 - hosts: all  # Replace with the correct group of AMP agent hosts
   become_method: sudo
   become: true
+  become_password: sudo
   tasks:
     # 1. Update apt cache
     - name: Update apt cache
@@ -19,7 +20,6 @@
     # 2. Upgrade amp instances
     - name: Upgrade AMP Instances to the latest version
       command: ampinstmgr upgradeall --nocache
-      become: true
       become_method: su
       become_user: amp
       become_flags: '-l'
