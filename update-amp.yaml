@@ -1,16 +1,15 @@
 - hosts: all  # Replace with the correct group of AMP agent hosts
+  become_method: sudo
   become: true
   tasks:
     # 1. Update apt cache
     - name: Update apt cache
-      become: true
       apt:
         update_cache: yes
         lock_timeout: 120
 
     # 2. Upgrade ampinstmgr
     - name: Upgrade ampinstmgr to the latest version
-      become: true
       apt:
         name: ampinstmgr
         state: latest
